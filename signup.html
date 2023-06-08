@@ -3,8 +3,9 @@
 
 <head>
     <title>Sign Up</title>
-    <link rel="stylesheet" href="assets/css/signup.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/signup.css">
 </head>
 
 <body>
@@ -14,30 +15,43 @@
         <form class="signup-form">
             <div>
                 <label for="name">Username </label>
-                <input id="name" type="text" placeholder="Username" name="name" required />
+                <input id="username" type="text" placeholder="Username" name="name" required />
+                <p id="message-username"></p>
             </div>
 
             <div>
                 <label for="email">Email </label>
                 <input id="email" type="email" placeholder="me@example.com" name="email" required />
+                <p id="message-email"></p>
             </div>
 
             <div>
                 <label for="password">Password </label>
                 <input id="password" type="password" placeholder="password" name="password" required />
                 <i class="bi bi-eye-slash" id="togglePassword"></i>
+                <p id="message-password"></p>
             </div>
 
             <div>
                 <label for="confirm_password">Confirm Password </label>
                 <input id="confirm_password" type="password" placeholder="Reenter Password" name="confirm_password"
                     required />
-                    <i class="bi bi-eye-slash" id="toggleConfirmPassword"></i>
+                <i class="bi bi-eye-slash" id="toggleConfirmPassword"></i>
+                <p id="message-confirm_password"></p>
             </div>
 
-            <button class="btn btn--form" type="submit" value="Log in">
+            <button class="btn btn--form" type="submit" value="Log in" id="signUpBtn" >
                 Sign Up
             </button>
+
+            <div id="successModal" class="modal">
+
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3>You Signed Up successfully!!!</h3>
+                </div>
+
+            </div>
         </form>
     </div>
     <script src="assets/js/signup.js"></script>
