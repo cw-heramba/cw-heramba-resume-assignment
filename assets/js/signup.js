@@ -1,8 +1,8 @@
 let validity_obj = {
-    username_valid : false,
-    email_valid : false,
-    password_valid : false,
-    confirm_password_valid : false,
+    username_valid: false,
+    email_valid: false,
+    password_valid: false,
+    confirm_password_valid: false,
 }
 
 const togglePassword = document.querySelector("#togglePassword");
@@ -57,19 +57,19 @@ function validateUsername(target, message) {
     const value = target.value;
     if (value == "") {
         message.innerText = "Cannot be blank.";
-        username_valid = false;
+        validity_obj.username_valid = false;
         updateState(target, "correct_border", "error_border");
     } else if (value.length < 3) {
         message.innerText = "Must have at least 3 characters.";
-        username_valid = false;
+        validity_obj.username_valid = false;
         updateState(target, "correct_border", "error_border");
     } else if (value.length > 25) {
         message.innerText = "Cannot exceed 25 characters.";
-        username_valid = false;
+        validity_obj.username_valid = false;
         updateState(target, "correct_border", "error_border");
     } else {
         message.innerText = "";
-        username_valid = true;
+        validity_obj.username_valid = true;
         updateState(target, "error_border", "correct_border");
     }
 };
@@ -81,11 +81,11 @@ function validateEmail(target, message) {
     if (regex.test(value) === false) {
         message.innerText = "Enter valid address";
         updateState(target, "correct_border", "error_border");
-        email_valid = false;
+        validity_obj.email_valid = false;
     } else {
         message.innerText = "";
         updateState(target, "error_border", "correct_border");
-        email_valid = true;
+        validity_obj.email_valid = true;
     }
 };
 
@@ -96,11 +96,11 @@ function validatePassword(target, message) {
     if (regex.test(value) === false) {
         message.innerText = "Password must contain at least one lowercase character, one uppercase character, one number, and one special character from the set (!@#$%^&*).";
         updateState(target, "correct_border", "error_border");
-        password_valid = false;
+        validity_obj.password_valid = false;
     } else {
         message.innerText = "";
         updateState(target, "error_border", "correct_border");
-        password_valid = true;
+        validity_obj.password_valid = true;
     }
 };
 
@@ -111,21 +111,35 @@ function validateConfirmPassword(target, message) {
     if (value != document.querySelector("#password").value) {
         message.innerText = "Please enter same password again";
         updateState(target, "correct_border", "error_border");
-        confirm_password_valid = false;
+        validity_obj.confirm_password_valid = false;
     } else {
         message.innerText = "";
         updateState(target, "error_border", "correct_border");
-        confirm_password_valid = true;
+        validity_obj.confirm_password_valid = true;
     }
 };
 
+function AreCheckFormStatusPropstrue() {
+    if (validity_obj.username_valid === true
+        && validity_obj.email_valid === true
+        && validity_obj.password_valid === true
+        && validity_obj.confirm_password_valid === true
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function allValid() {
-    const signUpBtn = document.querySelector("#signUpBtn");
+    const signUpBtn = document.getElementById("signUpBtn");
     console.log(signUpBtn);
-    if (Object.values(validity_obj).includes(false)){
-        
-    }else{
-        
+    if (AreCheckFormStatusPropstrue() && signUpBtn.disabled == true) {
+        signUpBtn.toggleAttribute("disabled");
+    }
+    if (AreCheckFormStatusPropstrue() == false && signUpBtn.disabled == false) {
+        signUpBtn.toggleAttribute("disabled");
     }
 }
 
