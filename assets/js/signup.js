@@ -119,7 +119,7 @@ function validateConfirmPassword(target, message) {
     }
 };
 
-function AreCheckFormStatusPropstrue() {
+function checkValidityStatus() {
     if (validity_obj.username_valid === true
         && validity_obj.email_valid === true
         && validity_obj.password_valid === true
@@ -135,10 +135,10 @@ function AreCheckFormStatusPropstrue() {
 function allValid() {
     const signUpBtn = document.getElementById("signUpBtn");
     console.log(signUpBtn);
-    if (AreCheckFormStatusPropstrue() && signUpBtn.disabled == true) {
+    if (checkValidityStatus() && signUpBtn.disabled == true) {
         signUpBtn.toggleAttribute("disabled");
     }
-    if (AreCheckFormStatusPropstrue() == false && signUpBtn.disabled == false) {
+    if (checkValidityStatus() == false && signUpBtn.disabled == false) {
         signUpBtn.toggleAttribute("disabled");
     }
 }
